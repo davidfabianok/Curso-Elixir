@@ -32,14 +32,10 @@ defmodule EnumOperations do
 
   """
   def reverse(list) when not is_list(list), do: nil
-  def reverse([_] = new_list), do: new_list
-  def reverse([val1, val2]), do: [val2, val1]
+  def reverse(list), do: reverse(list, [])
+  def reverse([], reversed), do: reversed
+  def reverse([head | tail], reversed), do: reverse(tail, [head | reversed])
 
-  def reverse([val1, val2 | tail]) do
-    :lists.reverse(tail, [val2, val1])
-  end
-
-  def reverse([]), do: []
 
   @doc """
   Returns a list that meets the condition.
